@@ -2,9 +2,12 @@
   "name": "rocketlog",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {"node":">=18"},
   "scripts": {
     "dev": "tsx watch --env-file .env src/server.ts",
-    "test:dev": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watchAll --runInBand"
+    "test:dev": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watchAll --runInBand",
+    "build":"tsup src --out-dir build",
+    "start": "node build/server.js"
   },
   "author": "Luigi Ceschim",
   "description": "API de entregas de encomendas",
