@@ -1,7 +1,6 @@
 import {Request, Response, NextFunction} from "express"
 import {AppError} from "@/utils/AppError"
-import { ZodError } from "zod"
-import { Prisma } from '@prisma/client';
+import { z } from "zod"
 
 export function errorHandling(
     error:any,
@@ -14,10 +13,10 @@ export function errorHandling(
         return response.status(error.statusCode).json({message: error.message})
     }
     
-    if(error instanceof ZodError){
+    if(error instanceof z.ZodError){
         return response.status(400).json({
             message: "Validation Error",
-            issues:error.format(),
+            issues:z.treeifyError(error),
         })
     }
 
