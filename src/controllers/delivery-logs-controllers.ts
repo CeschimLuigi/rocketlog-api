@@ -7,7 +7,7 @@ class DeliveryLogsController{
     async create(req:Request, res:Response){
 
         const bodySchema=z.object({
-            delivery_id:z.string().uuid(),
+            delivery_id:z.uuid(),
             description:z.string()
         })
 
@@ -45,7 +45,7 @@ class DeliveryLogsController{
     }
     async show(req:Request, res:Response){
         const paramsSchema = z.object({
-            delivery_id:z.string().uuid(),
+            delivery_id:z.uuid(),
         })
 
         const {delivery_id} = paramsSchema.parse(req.params)
